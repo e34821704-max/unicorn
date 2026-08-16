@@ -1,36 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>🦄 Unicorn Reserve · Magical Backed</title>
-  <!-- Font Awesome for icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🦄 Unicorn Reserve · Registration</title>
+  <!-- Font Awesome 6 (free) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
+      font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
     }
 
     body {
-      background: linear-gradient(145deg, #f9f0ff 0%, #e6d9f0 100%);
+      background: linear-gradient(145deg, #f5edff 0%, #e2d4f5 100%);
       min-height: 100vh;
       padding: 2rem 1.5rem;
     }
 
-    /* main card – glassmorphism */
+    /* main glass container */
     .container {
       max-width: 1200px;
       margin: 0 auto;
-      background: rgba(255, 255, 255, 0.35);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+      background: rgba(255, 248, 255, 0.4);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
       border-radius: 3.5rem;
       padding: 2.5rem 2.8rem;
-      box-shadow: 0 20px 50px rgba(120, 80, 180, 0.25);
-      border: 1px solid rgba(255, 255, 255, 0.5);
+      box-shadow: 0 20px 50px rgba(110, 70, 180, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.6);
     }
 
     /* header / navigation */
@@ -39,16 +39,16 @@
       flex-wrap: wrap;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 2.8rem;
+      margin-bottom: 2.5rem;
     }
 
     .logo {
       display: flex;
       align-items: center;
       gap: 0.6rem;
-      font-size: 2rem;
+      font-size: 2.1rem;
       font-weight: 700;
-      background: linear-gradient(135deg, #b57ceb, #7b4fc0);
+      background: linear-gradient(135deg, #b57ceb, #7a4bc2);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
@@ -56,9 +56,9 @@
     }
 
     .logo i {
-      color: #f0c3ff;
-      font-size: 2.6rem;
-      text-shadow: 0 0 12px #c084fc;
+      color: #e6c3ff;
+      font-size: 2.8rem;
+      text-shadow: 0 0 16px #b27ae0;
     }
 
     .nav-links {
@@ -66,6 +66,7 @@
       gap: 1.8rem;
       font-weight: 600;
       color: #3d2a5c;
+      flex-wrap: wrap;
     }
 
     .nav-links a {
@@ -79,22 +80,35 @@
 
     .nav-links a:hover {
       border-bottom-color: #b57ceb;
-      color: #251a3b;
+      color: #1f0f33;
     }
 
     .nav-links a i {
-      margin-right: 6px;
+      margin-right: 8px;
     }
 
-    /* grid layout: left stats, right registration form */
+    /* page indicator */
+    .page-badge {
+      background: rgba(160, 120, 210, 0.2);
+      border-radius: 60px;
+      padding: 0.2rem 1.4rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #4f3377;
+      border: 1px solid #d5c0f0;
+      display: inline-block;
+      margin-bottom: 1rem;
+    }
+
+    /* two column layout: stats + registration */
     .dashboard-grid {
       display: grid;
       grid-template-columns: 1.2fr 1fr;
       gap: 2.5rem;
-      margin: 2.5rem 0 3rem;
+      margin: 2rem 0 2.8rem;
     }
 
-    /* left panel – realtime stats */
+    /* stats panel (realtime) */
     .stats-panel {
       background: rgba(255, 245, 255, 0.5);
       backdrop-filter: blur(4px);
@@ -107,7 +121,7 @@
       font-size: 1.9rem;
       font-weight: 700;
       color: #2f1d47;
-      margin-bottom: 1.2rem;
+      margin-bottom: 1.4rem;
       display: flex;
       align-items: center;
       gap: 12px;
@@ -115,15 +129,14 @@
 
     .stats-panel h2 i {
       color: #b57ceb;
-      font-size: 2.2rem;
     }
 
     .stat-item {
       display: flex;
       justify-content: space-between;
-      padding: 0.9rem 0.3rem;
+      padding: 0.9rem 0.2rem;
       border-bottom: 1px solid rgba(140, 100, 190, 0.15);
-      font-size: 1.1rem;
+      font-size: 1.05rem;
     }
 
     .stat-item:last-child {
@@ -138,15 +151,14 @@
     .stat-value {
       font-weight: 700;
       color: #1f0f33;
-      background: rgba(200, 170, 240, 0.25);
+      background: rgba(200, 170, 240, 0.2);
       padding: 0.2rem 1rem;
       border-radius: 40px;
-      font-size: 1rem;
     }
 
     .stat-value i {
-      margin-right: 8px;
-      color: #8b5ecf;
+      margin-right: 6px;
+      color: #7a4bc2;
     }
 
     .contract-box {
@@ -155,16 +167,15 @@
       padding: 0.9rem 1.4rem;
       border-radius: 60px;
       font-size: 0.9rem;
-      word-break: break-all;
       display: flex;
       align-items: center;
       gap: 10px;
       border: 1px solid #d5c0f0;
+      word-break: break-all;
     }
 
     .contract-box i {
       color: #6d44a3;
-      font-size: 1.2rem;
     }
 
     .contract-box span {
@@ -173,7 +184,21 @@
       color: #2a1a44;
     }
 
-    /* right panel – registration / customer form */
+    .badge-group {
+      margin-top: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 18px;
+      font-size: 0.9rem;
+      color: #392a52;
+    }
+
+    .badge-group i {
+      margin-right: 6px;
+      color: #7a4bc2;
+    }
+
+    /* registration panel – no wallet */
     .register-panel {
       background: rgba(255, 248, 255, 0.6);
       backdrop-filter: blur(4px);
@@ -186,7 +211,7 @@
       font-size: 1.8rem;
       font-weight: 700;
       color: #2f1d47;
-      margin-bottom: 1.2rem;
+      margin-bottom: 1.4rem;
       display: flex;
       align-items: center;
       gap: 10px;
@@ -197,7 +222,7 @@
     }
 
     .form-group {
-      margin-bottom: 1.3rem;
+      margin-bottom: 1.2rem;
     }
 
     .form-group label {
@@ -208,7 +233,14 @@
       font-size: 0.95rem;
     }
 
-    .form-group input {
+    .form-group label i {
+      margin-right: 6px;
+      color: #7a4bc2;
+      width: 1.2rem;
+    }
+
+    .form-group input,
+    .form-group select {
       width: 100%;
       padding: 0.9rem 1.2rem;
       border-radius: 60px;
@@ -219,9 +251,10 @@
       outline: none;
     }
 
-    .form-group input:focus {
+    .form-group input:focus,
+    .form-group select:focus {
       border-color: #a777e5;
-      box-shadow: 0 0 0 4px rgba(160, 120, 220, 0.25);
+      box-shadow: 0 0 0 4px rgba(160, 120, 220, 0.2);
       background: white;
     }
 
@@ -237,7 +270,7 @@
       cursor: pointer;
       transition: 0.2s;
       box-shadow: 0 6px 18px rgba(130, 70, 200, 0.3);
-      margin-top: 0.5rem;
+      margin-top: 0.8rem;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -250,15 +283,16 @@
       background: linear-gradient(145deg, #c792f7, #7b4bc2);
     }
 
-    /* newsletter & contact – two column */
+    /* newsletter & contact */
     .info-section {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 2rem;
-      margin: 3rem 0 1rem;
+      margin: 2.8rem 0 1.5rem;
     }
 
-    .newsletter-box, .contact-box {
+    .newsletter-box,
+    .contact-box {
       background: rgba(255, 245, 255, 0.4);
       backdrop-filter: blur(4px);
       border-radius: 2.5rem;
@@ -267,23 +301,19 @@
       transition: 0.2s;
     }
 
-    .newsletter-box:hover, .contact-box:hover {
+    .newsletter-box:hover,
+    .contact-box:hover {
       background: rgba(255, 245, 255, 0.7);
     }
 
-    .newsletter-box h4, .contact-box h4 {
+    .newsletter-box h4,
+    .contact-box h4 {
       font-size: 1.5rem;
       color: #2f1d47;
       margin-bottom: 0.8rem;
       display: flex;
       align-items: center;
       gap: 12px;
-    }
-
-    .newsletter-box p {
-      color: #3f2b5a;
-      margin-bottom: 1.2rem;
-      font-weight: 450;
     }
 
     .newsletter-input-group {
@@ -294,7 +324,7 @@
 
     .newsletter-input-group input {
       flex: 2;
-      min-width: 160px;
+      min-width: 150px;
       padding: 0.8rem 1.2rem;
       border-radius: 60px;
       border: 1px solid #d5c0f0;
@@ -320,7 +350,6 @@
       display: flex;
       align-items: center;
       gap: 8px;
-      white-space: nowrap;
     }
 
     .btn-subscribe:hover {
@@ -328,56 +357,109 @@
       transform: scale(1.03);
     }
 
-    .contact-box .contact-detail {
+    .contact-detail {
       display: flex;
       align-items: center;
       gap: 14px;
-      margin: 1rem 0;
+      margin: 0.9rem 0;
       color: #2a1a44;
       font-weight: 500;
     }
 
-    .contact-box .contact-detail i {
+    .contact-detail i {
       width: 2rem;
       font-size: 1.4rem;
       color: #7b4fc0;
     }
 
-    .contact-box .social-icons {
+    .social-icons {
       display: flex;
       gap: 1.2rem;
-      margin-top: 1.2rem;
+      margin-top: 1rem;
       font-size: 1.8rem;
     }
 
-    .contact-box .social-icons a {
+    .social-icons a {
       color: #4f3377;
       transition: 0.2s;
     }
 
-    .contact-box .social-icons a:hover {
+    .social-icons a:hover {
       color: #7b4fc0;
       transform: translateY(-3px);
     }
 
-    /* footer */
     .footer-note {
-      margin-top: 2.8rem;
+      margin-top: 2.5rem;
       text-align: center;
       font-size: 0.9rem;
       color: #4f3a6b;
       border-top: 1px solid rgba(160, 120, 200, 0.2);
       padding-top: 2rem;
-      letter-spacing: 0.3px;
       display: flex;
       justify-content: center;
       gap: 2.5rem;
       flex-wrap: wrap;
     }
 
-    .footer-note span i {
-      margin-right: 6px;
+    /* hidden pages (registration success + pending review) */
+    .page-hidden {
+      display: none;
+    }
+
+    .page-active {
+      display: block;
+    }
+
+    /* pending / success card */
+    .status-card {
+      background: rgba(255, 248, 255, 0.7);
+      backdrop-filter: blur(8px);
+      border-radius: 2.5rem;
+      padding: 2.5rem 2.8rem;
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      text-align: center;
+      max-width: 700px;
+      margin: 1.5rem auto;
+    }
+
+    .status-card i {
+      font-size: 4rem;
       color: #b57ceb;
+      margin-bottom: 1rem;
+    }
+
+    .status-card h2 {
+      color: #2f1d47;
+      font-size: 2rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .status-card p {
+      color: #3f2b5a;
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+
+    .btn-back {
+      background: #7b4fc0;
+      color: white;
+      border: none;
+      padding: 0.8rem 2.5rem;
+      border-radius: 60px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.2s;
+      margin-top: 1.5rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-back:hover {
+      background: #5f3a9b;
+      transform: scale(1.02);
     }
 
     /* responsive */
@@ -396,10 +478,6 @@
         align-items: flex-start;
         gap: 1rem;
       }
-      .nav-links {
-        flex-wrap: wrap;
-        gap: 1rem 1.2rem;
-      }
     }
 
     @media (max-width: 480px) {
@@ -407,132 +485,157 @@
         padding: 1.2rem;
         border-radius: 2rem;
       }
-      .stat-item {
-        flex-wrap: wrap;
-        gap: 0.2rem;
-      }
-    }
-
-    /* tiny unicorn sparkle */
-    .sparkle {
-      color: #f0c3ff;
-      text-shadow: 0 0 6px #d8b0ff;
     }
   </style>
 </head>
 <body>
-<div class="container">
-  <!-- header -->
+<div class="container" id="appContainer">
+  <!-- ========== HEADER ========== -->
   <div class="header">
     <div class="logo">
       <i class="fas fa-unicorn"></i> UNICORN · RSV
     </div>
     <div class="nav-links">
-      <a href="#"><i class="fas fa-chart-pie"></i> Dashboard</a>
-      <a href="#register"><i class="fas fa-user-plus"></i> Register</a>
-      <a href="#contact"><i class="fas fa-envelope"></i> Contact</a>
+      <a href="#" onclick="showPage('dashboard')"><i class="fas fa-chart-pie"></i> Dashboard</a>
+      <a href="#" onclick="showPage('register')"><i class="fas fa-user-plus"></i> Register</a>
+      <a href="#" onclick="showPage('contact')"><i class="fas fa-envelope"></i> Contact</a>
     </div>
   </div>
 
-  <!-- dashboard + registration grid -->
-  <div class="dashboard-grid">
-    <!-- left stats (like usdtrsv.space) -->
-    <div class="stats-panel">
-      <h2><i class="fas fa-crystal-ball"></i> Real‑time Unicorn</h2>
-      <div class="stat-item">
-        <span class="stat-label"><i class="fas fa-clock"></i> Time since launch</span>
-        <span class="stat-value">63d 13h 58m 12s</span>
+  <!-- ========== DASHBOARD PAGE (default) ========== -->
+  <div id="page-dashboard" class="page-active">
+    <div class="dashboard-grid">
+      <!-- left stats -->
+      <div class="stats-panel">
+        <h2><i class="fas fa-crystal-ball"></i> Real‑time Unicorn</h2>
+        <div class="stat-item">
+          <span class="stat-label"><i class="fas fa-clock"></i> Time since launch</span>
+          <span class="stat-value">63d 13h 58m 12s</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-label"><i class="fas fa-coins"></i> UNICORN Price</span>
+          <span class="stat-value">$1.02 <i class="fas fa-arrow-up" style="color:#4CAF50;"></i></span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-label"><i class="fas fa-chart-line"></i> Market Cap</span>
+          <span class="stat-value">$12.4M</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-label"><i class="fas fa-circle-notch"></i> Circulating Supply</span>
+          <span class="stat-value">12.1M UNI</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-label"><i class="fas fa-water"></i> Pool Liquidity</span>
+          <span class="stat-value">$3.8M</span>
+        </div>
+        <div class="contract-box">
+          <i class="fas fa-file-contract"></i>
+          <span>0xf61a03411bfea10f6686f498ab0681a312b4ef66</span>
+          <i class="fas fa-check-circle" style="color:#6d44a3;"></i>
+        </div>
+        <div class="badge-group">
+          <span><i class="fas fa-check-circle"></i> Ownership renounced</span>
+          <span><i class="fas fa-shield-alt"></i> Audit passed</span>
+          <span><i class="fas fa-link"></i> ETH + BSC</span>
+        </div>
       </div>
-      <div class="stat-item">
-        <span class="stat-label"><i class="fas fa-coins"></i> UNICORN Price</span>
-        <span class="stat-value">$1.02 <i class="fas fa-arrow-up" style="color:#4CAF50;"></i></span>
-      </div>
-      <div class="stat-item">
-        <span class="stat-label"><i class="fas fa-chart-line"></i> Market Cap</span>
-        <span class="stat-value">$12.4M</span>
-      </div>
-      <div class="stat-item">
-        <span class="stat-label"><i class="fas fa-circle-notch"></i> Circulating Supply</span>
-        <span class="stat-value">12.1M UNI</span>
-      </div>
-      <div class="stat-item">
-        <span class="stat-label"><i class="fas fa-water"></i> Pool Liquidity</span>
-        <span class="stat-value">$3.8M</span>
-      </div>
-      <div class="contract-box">
-        <i class="fas fa-file-contract"></i>
-        <span>0xf61a03411bfea10f6686f498ab0681a312b4ef66</span>
-        <i class="fas fa-check-circle" style="color:#6d44a3;"></i>
-      </div>
-      <div style="margin-top: 14px; display: flex; gap: 10px; flex-wrap: wrap; font-size: 0.9rem; color: #392a52;">
-        <span><i class="fas fa-check-circle" style="color:#6d44a3;"></i> Ownership renounced</span>
-        <span><i class="fas fa-shield-alt"></i> Audit passed</span>
-        <span><i class="fas fa-link"></i> ETH + BSC</span>
+
+      <!-- registration panel (quick form) -->
+      <div class="register-panel" id="registerPanel">
+        <h3><i class="fas fa-address-card"></i> Customer registration</h3>
+        <form id="registrationForm" onsubmit="event.preventDefault(); handleRegistration();">
+          <div class="form-group">
+            <label for="fullname"><i class="fas fa-user"></i> Full name</label>
+            <input type="text" id="fullname" placeholder="e.g. Luna Sparkle" required />
+          </div>
+          <div class="form-group">
+            <label for="email"><i class="fas fa-envelope"></i> Email address</label>
+            <input type="email" id="email" placeholder="hello@unicorn.com" required />
+          </div>
+          <div class="form-group">
+            <label for="phone"><i class="fas fa-phone"></i> Phone number</label>
+            <input type="tel" id="phone" placeholder="+1 (555) 000-9999" required />
+          </div>
+          <div class="form-group">
+            <label for="location"><i class="fas fa-map-pin"></i> Location (City, Country)</label>
+            <input type="text" id="location" placeholder="e.g. London, UK" required />
+          </div>
+          <div class="form-group">
+            <label for="dob"><i class="fas fa-calendar-alt"></i> Date of Birth</label>
+            <input type="date" id="dob" required />
+          </div>
+          <button type="submit" class="btn-register"><i class="fas fa-star"></i> Register now</button>
+        </form>
+        <p style="margin-top: 1rem; font-size: 0.8rem; color: #59447a; text-align: center;">
+          <i class="fas fa-lock" style="margin-right: 4px;"></i> Your data is encrypted & secure
+        </p>
       </div>
     </div>
 
-    <!-- registration panel (customer registration) -->
-    <div class="register-panel" id="register">
-      <h3><i class="fas fa-address-card"></i> Customer registration</h3>
-      <form id="registrationForm" onsubmit="event.preventDefault(); alert('✨ Welcome, unicorn! Registration submitted (demo).');">
-        <div class="form-group">
-          <label for="fullname"><i class="fas fa-user"></i> Full name</label>
-          <input type="text" id="fullname" placeholder="e.g. Luna Sparkle" required>
+    <!-- newsletter + contact -->
+    <div class="info-section">
+      <div class="newsletter-box">
+        <h4><i class="fas fa-paper-plane" style="color:#b57ceb;"></i> Newsletter</h4>
+        <p>Get weekly unicorn market insights, governance updates, and exclusive airdrops.</p>
+        <div class="newsletter-input-group">
+          <input type="email" placeholder="your@email.com" id="newsletterEmail" />
+          <button class="btn-subscribe" onclick="handleNewsletter()"><i class="fas fa-feather-alt"></i> Subscribe</button>
         </div>
-        <div class="form-group">
-          <label for="email"><i class="fas fa-envelope"></i> Email address</label>
-          <input type="email" id="email" placeholder="hello@unicorn.com" required>
+        <p style="margin-top: 10px; font-size: 0.8rem; color: #4f3377;"><i class="fas fa-shield-alt"></i> No spam, unsubscribe anytime.</p>
+      </div>
+
+      <div class="contact-box" id="contactPage">
+        <h4><i class="fas fa-headset" style="color:#b57ceb;"></i> Contact marketing</h4>
+        <div class="contact-detail">
+          <i class="fas fa-envelope"></i> <span>marketing@unicornrsv.io</span>
         </div>
-        <div class="form-group">
-          <label for="wallet"><i class="fas fa-wallet"></i> Wallet address (optional)</label>
-          <input type="text" id="wallet" placeholder="0x...">
+        <div class="contact-detail">
+          <i class="fas fa-phone-alt"></i> <span>+1 (800) 555‑UNICORN</span>
         </div>
-        <button type="submit" class="btn-register"><i class="fas fa-star"></i> Register now</button>
-      </form>
-      <p style="margin-top: 1rem; font-size: 0.8rem; color: #59447a; text-align: center;">
-        <i class="fas fa-lock" style="margin-right: 4px;"></i> Your data is encrypted & secure
+        <div class="contact-detail">
+          <i class="fas fa-clock"></i> <span>24/7 community support</span>
+        </div>
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-telegram-plane"></i></a>
+          <a href="#"><i class="fab fa-discord"></i></a>
+          <a href="#"><i class="fab fa-github"></i></a>
+        </div>
+        <p style="margin-top: 12px; font-size: 0.9rem; color: #3f2b5a;">
+          <i class="fas fa-rocket"></i> Partnerships & press: contact@unicornrsv.io
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== REGISTRATION SUCCESS / PENDING PAGE ========== -->
+  <div id="page-pending" class="page-hidden">
+    <div class="status-card">
+      <i class="fas fa-hourglass-half"></i>
+      <h2>⏳ Registration pending review</h2>
+      <p>
+        <strong>Thank you for registering, <span id="pendingName">valued unicorn</span>!</strong><br />
+        Your application is now under review by our team. You will receive a confirmation email at 
+        <strong><span id="pendingEmail">your@email.com</span></strong> once your account is approved.
       </p>
-    </div>
-  </div>
-
-  <!-- newsletter + contact section -->
-  <div class="info-section">
-    <!-- newsletter -->
-    <div class="newsletter-box">
-      <h4><i class="fas fa-paper-plane" style="color:#b57ceb;"></i> Newsletter</h4>
-      <p>Get weekly unicorn market insights, governance updates, and exclusive airdrops.</p>
-      <div class="newsletter-input-group">
-        <input type="email" placeholder="your@email.com" id="newsletterEmail">
-        <button class="btn-subscribe" onclick="document.getElementById('newsletterEmail').value && alert('✅ You\'re subscribed to the Unicorn newsletter!');"><i class="fas fa-feather-alt"></i> Subscribe</button>
-      </div>
-      <p style="margin-top: 10px; font-size: 0.8rem; color: #4f3377;"><i class="fas fa-shield-alt"></i> No spam, unsubscribe anytime.</p>
-    </div>
-
-    <!-- contact me page / marketing contact -->
-    <div class="contact-box" id="contact">
-      <h4><i class="fas fa-headset" style="color:#b57ceb;"></i> Contact marketing</h4>
-      <div class="contact-detail">
-        <i class="fas fa-envelope"></i> <span>marketing@unicornrsv.io</span>
-      </div>
-      <div class="contact-detail">
-        <i class="fas fa-phone-alt"></i> <span>+1 (800) 555‑UNICORN</span>
-      </div>
-      <div class="contact-detail">
-        <i class="fas fa-clock"></i> <span>24/7 community support</span>
-      </div>
-      <div class="social-icons">
-        <a href="#"><i class="fab fa-twitter"></i></a>
-        <a href="#"><i class="fab fa-telegram-plane"></i></a>
-        <a href="#"><i class="fab fa-discord"></i></a>
-        <a href="#"><i class="fab fa-github"></i></a>
-      </div>
-      <p style="margin-top: 12px; font-size: 0.9rem; color: #3f2b5a;">
-        <i class="fas fa-rocket"></i> Partnerships & press: contact@unicornrsv.io
+      <p style="margin-top: 1rem; background: #ece3ff; padding: 1rem; border-radius: 60px;">
+        <i class="fas fa-info-circle" style="color:#7a4bc2;"></i> 
+        Review typically takes 24–48 hours. We'll notify you via email.
       </p>
+      <button class="btn-back" onclick="showPage('dashboard')"><i class="fas fa-arrow-left"></i> Back to dashboard</button>
+    </div>
+
+    <!-- show saved registration data (demo) -->
+    <div style="max-width:700px; margin: 1.5rem auto; background: rgba(255,245,255,0.5); border-radius: 2rem; padding: 1.5rem;">
+      <h4 style="color:#2f1d47; display:flex; gap:10px;"><i class="fas fa-database"></i> Registered info (saved locally)</h4>
+      <div id="savedDataDisplay" style="display:grid; grid-template-columns:1fr 1fr; gap:0.5rem 1.5rem; margin-top:0.8rem; color:#2a1a44;">
+        <!-- filled by JS -->
+      </div>
+      <p style="margin-top: 1rem; font-size:0.85rem; color:#4f3377;"><i class="fas fa-check-circle" style="color:#7a4bc2;"></i> Data stored in browser (demo). In production, this would be sent to your server.</p>
     </div>
   </div>
 
-  <!-- footer – like reference style -->
+  <!-- ========== FOOTER ========== -->
   <div class="footer-note">
     <span><i class="fas fa-check-circle" style="color:#7b4fc0;"></i> Contract verified</span>
     <span><i class="fas fa-user-astronaut"></i> Unicorn RSV · Reserve Backed</span>
@@ -540,7 +643,124 @@
     <span><i class="fas fa-star"></i> 63 days young</span>
   </div>
 </div>
-<!-- tiny extra sparkle -->
-<i class="fas fa-unicorn" style="position:fixed; bottom:20px; right:20px; font-size:3rem; opacity:0.15; color:#b57ceb; pointer-events:none;"></i>
+
+<script>
+  // ----- page navigation -----
+  function showPage(pageId) {
+    // hide all pages
+    document.getElementById('page-dashboard').classList.remove('page-active');
+    document.getElementById('page-dashboard').classList.add('page-hidden');
+    document.getElementById('page-pending').classList.remove('page-active');
+    document.getElementById('page-pending').classList.add('page-hidden');
+
+    if (pageId === 'dashboard') {
+      document.getElementById('page-dashboard').classList.remove('page-hidden');
+      document.getElementById('page-dashboard').classList.add('page-active');
+    } else if (pageId === 'register') {
+      // scroll to registration form on dashboard
+      document.getElementById('page-dashboard').classList.remove('page-hidden');
+      document.getElementById('page-dashboard').classList.add('page-active');
+      document.getElementById('registerPanel').scrollIntoView({ behavior: 'smooth' });
+    } else if (pageId === 'contact') {
+      document.getElementById('page-dashboard').classList.remove('page-hidden');
+      document.getElementById('page-dashboard').classList.add('page-active');
+      document.getElementById('contactPage').scrollIntoView({ behavior: 'smooth' });
+    } else if (pageId === 'pending') {
+      document.getElementById('page-pending').classList.remove('page-hidden');
+      document.getElementById('page-pending').classList.add('page-active');
+    }
+  }
+
+  // ----- registration handler -----
+  function handleRegistration() {
+    // gather values
+    const fullname = document.getElementById('fullname').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const location = document.getElementById('location').value.trim();
+    const dob = document.getElementById('dob').value;
+
+    if (!fullname || !email || !phone || !location || !dob) {
+      alert('Please fill in all fields.');
+      return;
+    }
+
+    // save to "database" (localStorage for demo)
+    const userData = {
+      fullname,
+      email,
+      phone,
+      location,
+      dob,
+      registeredAt: new Date().toISOString(),
+      status: 'pending review'
+    };
+    localStorage.setItem('unicornRegistration', JSON.stringify(userData));
+
+    // update pending page with name + email
+    document.getElementById('pendingName').textContent = fullname;
+    document.getElementById('pendingEmail').textContent = email;
+
+    // show saved data in the info box
+    const displayDiv = document.getElementById('savedDataDisplay');
+    displayDiv.innerHTML = `
+      <span><strong>Name</strong></span><span>${fullname}</span>
+      <span><strong>Email</strong></span><span>${email}</span>
+      <span><strong>Phone</strong></span><span>${phone}</span>
+      <span><strong>Location</strong></span><span>${location}</span>
+      <span><strong>Date of Birth</strong></span><span>${dob}</span>
+      <span><strong>Status</strong></span><span><i class="fas fa-hourglass-half" style="color:#b57ceb;"></i> pending review</span>
+    `;
+
+    // navigate to pending page
+    showPage('pending');
+
+    // optionally clear form
+    document.getElementById('registrationForm').reset();
+  }
+
+  // ----- newsletter subscription (demo) -----
+  function handleNewsletter() {
+    const emailInput = document.getElementById('newsletterEmail');
+    const email = emailInput.value.trim();
+    if (!email) {
+      alert('Please enter your email address.');
+      return;
+    }
+    alert(`✅ You're subscribed to the Unicorn newsletter! (${email})`);
+    emailInput.value = '';
+  }
+
+  // ----- auto-load saved data if exists (dashboard) -----
+  window.addEventListener('DOMContentLoaded', function() {
+    const saved = localStorage.getItem('unicornRegistration');
+    if (saved) {
+      try {
+        const data = JSON.parse(saved);
+        // prefill form if we want (optional)
+        // but we only show on pending page if user navigates there
+        // we also update the pending info if it's shown
+        if (document.getElementById('page-pending').classList.contains('page-active')) {
+          document.getElementById('pendingName').textContent = data.fullname || 'valued unicorn';
+          document.getElementById('pendingEmail').textContent = data.email || 'your@email.com';
+          const displayDiv = document.getElementById('savedDataDisplay');
+          displayDiv.innerHTML = `
+            <span><strong>Name</strong></span><span>${data.fullname || '-'}</span>
+            <span><strong>Email</strong></span><span>${data.email || '-'}</span>
+            <span><strong>Phone</strong></span><span>${data.phone || '-'}</span>
+            <span><strong>Location</strong></span><span>${data.location || '-'}</span>
+            <span><strong>Date of Birth</strong></span><span>${data.dob || '-'}</span>
+            <span><strong>Status</strong></span><span><i class="fas fa-hourglass-half" style="color:#b57ceb;"></i> ${data.status || 'pending review'}</span>
+          `;
+        }
+      } catch (e) {}
+    }
+  });
+
+  // expose functions globally for onclick
+  window.showPage = showPage;
+  window.handleRegistration = handleRegistration;
+  window.handleNewsletter = handleNewsletter;
+</script>
 </body>
 </html>
