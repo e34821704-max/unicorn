@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>🦄 Unicorn Reserve · Secure Dashboard</title>
+  <title>🦄 Unicorn Reserve · Login</title>
   <!-- Font Awesome 6 (free) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
   <style>
@@ -126,28 +126,6 @@
     .btn-register-nav:hover {
       background: rgba(130, 70, 200, 0.25);
       border-bottom: 2px solid #b57ceb !important;
-    }
-
-    /* Logout button */
-    .btn-logout-nav {
-      background: #ff6b6b;
-      color: white !important;
-      padding: 0.5rem 1.5rem !important;
-      border-radius: 60px !important;
-      border-bottom: none !important;
-      font-weight: 700 !important;
-      box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
-      transition: 0.2s;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .btn-logout-nav:hover {
-      transform: scale(1.05);
-      background: #ff5252 !important;
-      border-bottom: none !important;
-      color: white !important;
     }
 
     /* page indicator */
@@ -569,26 +547,6 @@
       text-decoration: underline;
     }
 
-    /* Protected content notice */
-    .protected-badge {
-      background: rgba(255, 107, 107, 0.15);
-      border: 1px solid #ff6b6b;
-      border-radius: 60px;
-      padding: 0.3rem 1.2rem;
-      font-size: 0.8rem;
-      color: #ff6b6b;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      margin-left: 10px;
-    }
-
-    .welcome-user {
-      color: #7a4bc2;
-      font-weight: 600;
-      margin-right: 0.5rem;
-    }
-
     /* responsive */
     @media (max-width: 880px) {
       .dashboard-grid {
@@ -620,8 +578,7 @@
         gap: 0.8rem;
       }
       .btn-login-nav,
-      .btn-register-nav,
-      .btn-logout-nav {
+      .btn-register-nav {
         padding: 0.4rem 1rem !important;
         font-size: 0.9rem !important;
       }
@@ -635,20 +592,20 @@
     <div class="logo">
       <i class="fas fa-unicorn"></i> UNICORN · RSV
     </div>
-    <div class="nav-links" id="navLinks">
-      <!-- Links will be dynamically updated based on login status -->
+    <div class="nav-links">
+      <a onclick="showPage('dashboard')"><i class="fas fa-chart-pie"></i> Dashboard</a>
+      <a onclick="showPage('register')" class="btn-register-nav"><i class="fas fa-user-plus"></i> Register</a>
+      <a onclick="showPage('login')" class="btn-login-nav"><i class="fas fa-sign-in-alt"></i> Login</a>
+      <a onclick="showPage('contact')"><i class="fas fa-envelope"></i> Contact</a>
     </div>
   </div>
 
-  <!-- ========== DASHBOARD PAGE (PROTECTED) ========== -->
-  <div id="page-dashboard" class="page-hidden">
+  <!-- ========== DASHBOARD PAGE ========== -->
+  <div id="page-dashboard" class="page-active">
     <div class="dashboard-grid">
       <!-- left stats -->
       <div class="stats-panel">
-        <h2>
-          <i class="fas fa-crystal-ball"></i> Real‑time Unicorn
-          <span class="protected-badge"><i class="fas fa-lock"></i> Protected</span>
-        </h2>
+        <h2><i class="fas fa-crystal-ball"></i> Real‑time Unicorn</h2>
         <div class="stat-item">
           <span class="stat-label"><i class="fas fa-clock"></i> Time since launch</span>
           <span class="stat-value">63d 13h 58m 12s</span>
@@ -681,26 +638,42 @@
         </div>
       </div>
 
-      <!-- Welcome panel for logged in users -->
-      <div class="register-panel" id="welcomePanel">
-        <h3><i class="fas fa-user-circle"></i> Welcome, <span id="dashboardUserName">User</span>!</h3>
-        <div style="background: rgba(200, 170, 240, 0.2); border-radius: 1.5rem; padding: 1.5rem; margin: 1rem 0;">
-          <p style="color: #2f1d47; font-weight: 500;">
-            <i class="fas fa-check-circle" style="color: #4CAF50;"></i> You are logged in and have access to the dashboard.
-          </p>
-          <p style="color: #3f2b5a; margin-top: 0.5rem;">
-            <i class="fas fa-unicorn"></i> Welcome to the Unicorn RSV community!
-          </p>
-        </div>
-        <div style="background: rgba(255, 245, 255, 0.5); border-radius: 1.5rem; padding: 1.5rem;">
-          <h4 style="color: #2f1d47; margin-bottom: 0.8rem;"><i class="fas fa-chart-bar"></i> Your Account</h4>
-          <div id="userAccountInfo" style="color: #3d2a5c; line-height: 2;">
-            <!-- Filled by JS -->
+      <!-- registration panel (quick form) -->
+      <div class="register-panel" id="registerPanel">
+        <h3><i class="fas fa-address-card"></i> Customer registration</h3>
+        <form id="registrationForm" onsubmit="event.preventDefault(); handleRegistration();">
+          <div class="form-group">
+            <label for="fullname"><i class="fas fa-user"></i> Full name</label>
+            <input type="text" id="fullname" placeholder="e.g. Luna Sparkle" required />
           </div>
+          <div class="form-group">
+            <label for="email"><i class="fas fa-envelope"></i> Email address</label>
+            <input type="email" id="email" placeholder="hello@unicorn.com" required />
+          </div>
+          <div class="form-group">
+            <label for="phone"><i class="fas fa-phone"></i> Phone number</label>
+            <input type="tel" id="phone" placeholder="+1 (555) 000-9999" required />
+          </div>
+          <div class="form-group">
+            <label for="location"><i class="fas fa-map-pin"></i> Location (City, Country)</label>
+            <input type="text" id="location" placeholder="e.g. London, UK" required />
+          </div>
+          <div class="form-group">
+            <label for="dob"><i class="fas fa-calendar-alt"></i> Date of Birth</label>
+            <input type="date" id="dob" required />
+          </div>
+          <div class="form-group">
+            <label for="regPassword"><i class="fas fa-lock"></i> Create password</label>
+            <input type="password" id="regPassword" placeholder="Min 6 characters" required minlength="6" />
+          </div>
+          <button type="submit" class="btn-register"><i class="fas fa-star"></i> Register now</button>
+        </form>
+        <p style="margin-top: 1rem; font-size: 0.8rem; color: #59447a; text-align: center;">
+          <i class="fas fa-lock" style="margin-right: 4px;"></i> Your data is encrypted & secure
+        </p>
+        <div class="login-link">
+          Already have an account? <a onclick="showPage('login')">Log in here</a>
         </div>
-        <button onclick="handleLogout()" class="btn-register" style="background: linear-gradient(145deg, #ff6b6b, #ee5a24); box-shadow: 0 6px 18px rgba(255, 107, 107, 0.3);">
-          <i class="fas fa-sign-out-alt"></i> Logout
-        </button>
       </div>
     </div>
 
@@ -719,7 +692,7 @@
       <div class="contact-box" id="contactPage">
         <h4><i class="fas fa-headset" style="color:#b57ceb;"></i> Contact marketing</h4>
         <div class="contact-detail">
-          <i class="fas fa-envelope"></i> <span>marketing@unicornfcu.com</span>
+          <i class="fas fa-envelope"></i> <span>marketing@unicornrsv.io</span>
         </div>
         <div class="contact-detail">
           <i class="fas fa-phone-alt"></i> <span>+1 (800) 555‑UNICORN</span>
@@ -734,14 +707,14 @@
           <a href="#"><i class="fab fa-github"></i></a>
         </div>
         <p style="margin-top: 12px; font-size: 0.9rem; color: #3f2b5a;">
-          <i class="fas fa-rocket"></i> Partnerships & press: contact@unicornfcu.com
+          <i class="fas fa-rocket"></i> Partnerships & press: contact@unicornrsv.io
         </p>
       </div>
     </div>
   </div>
 
   <!-- ========== LOGIN PAGE ========== -->
-  <div id="page-login" class="page-active">
+  <div id="page-login" class="page-hidden">
     <div class="login-panel">
       <h3><i class="fas fa-sign-in-alt"></i> Login to your account</h3>
       <form id="loginForm" onsubmit="event.preventDefault(); handleLogin();">
@@ -764,46 +737,6 @@
     </div>
   </div>
 
-  <!-- ========== REGISTRATION PAGE ========== -->
-  <div id="page-register" class="page-hidden">
-    <div class="register-panel" style="max-width: 600px; margin: 0 auto;">
-      <h3><i class="fas fa-address-card"></i> Customer registration</h3>
-      <form id="registrationForm" onsubmit="event.preventDefault(); handleRegistration();">
-        <div class="form-group">
-          <label for="fullname"><i class="fas fa-user"></i> Full name</label>
-          <input type="text" id="fullname" placeholder="e.g. Luna Sparkle" required />
-        </div>
-        <div class="form-group">
-          <label for="email"><i class="fas fa-envelope"></i> Email address</label>
-          <input type="email" id="email" placeholder="hello@unicorn.com" required />
-        </div>
-        <div class="form-group">
-          <label for="phone"><i class="fas fa-phone"></i> Phone number</label>
-          <input type="tel" id="phone" placeholder="+1 (555) 000-9999" required />
-        </div>
-        <div class="form-group">
-          <label for="location"><i class="fas fa-map-pin"></i> Location (City, Country)</label>
-          <input type="text" id="location" placeholder="e.g. London, UK" required />
-        </div>
-        <div class="form-group">
-          <label for="dob"><i class="fas fa-calendar-alt"></i> Date of Birth</label>
-          <input type="date" id="dob" required />
-        </div>
-        <div class="form-group">
-          <label for="regPassword"><i class="fas fa-lock"></i> Create password</label>
-          <input type="password" id="regPassword" placeholder="Min 6 characters" required minlength="6" />
-        </div>
-        <button type="submit" class="btn-register"><i class="fas fa-star"></i> Register now</button>
-      </form>
-      <p style="margin-top: 1rem; font-size: 0.8rem; color: #59447a; text-align: center;">
-        <i class="fas fa-lock" style="margin-right: 4px;"></i> Your data is encrypted & secure
-      </p>
-      <div class="login-link">
-        Already have an account? <a onclick="showPage('login')">Log in here</a>
-      </div>
-    </div>
-  </div>
-
   <!-- ========== REGISTRATION SUCCESS / PENDING PAGE ========== -->
   <div id="page-pending" class="page-hidden">
     <div class="status-card">
@@ -818,7 +751,7 @@
         <i class="fas fa-info-circle" style="color:#7a4bc2;"></i> 
         Review typically takes 24–48 hours. We'll notify you via email.
       </p>
-      <button class="btn-back" onclick="showPage('login')"><i class="fas fa-arrow-left"></i> Go to Login</button>
+      <button class="btn-back" onclick="showPage('dashboard')"><i class="fas fa-arrow-left"></i> Back to dashboard</button>
     </div>
 
     <!-- show saved registration data (demo) -->
@@ -841,7 +774,7 @@
         <i class="fas fa-unicorn" style="color:#7a4bc2;"></i> 
         You now have access to your dashboard and exclusive features.
       </p>
-      <button class="btn-back" onclick="showPage('dashboard')"><i class="fas fa-arrow-right"></i> Go to Dashboard</button>
+      <button class="btn-back" onclick="showPage('dashboard')"><i class="fas fa-arrow-left"></i> Go to Dashboard</button>
     </div>
   </div>
 
@@ -855,66 +788,10 @@
 </div>
 
 <script>
-  // ----- Authentication state -----
-  let isLoggedIn = false;
-  let currentUser = null;
-
-  // ----- Check login status on load -----
-  function checkAuthStatus() {
-    const stored = localStorage.getItem('unicornAuth');
-    if (stored) {
-      try {
-        const authData = JSON.parse(stored);
-        if (authData.isLoggedIn && authData.user) {
-          isLoggedIn = true;
-          currentUser = authData.user;
-          updateNavigation();
-          // If on login page, redirect to dashboard
-          if (document.getElementById('page-login').classList.contains('page-active')) {
-            showPage('dashboard');
-          }
-          return true;
-        }
-      } catch (e) {}
-    }
-    isLoggedIn = false;
-    currentUser = null;
-    updateNavigation();
-    return false;
-  }
-
-  // ----- Update navigation based on login status -----
-  function updateNavigation() {
-    const nav = document.getElementById('navLinks');
-    if (isLoggedIn && currentUser) {
-      nav.innerHTML = `
-        <a onclick="showPage('dashboard')" class="active"><i class="fas fa-chart-pie"></i> Dashboard</a>
-        <a onclick="showPage('contact')"><i class="fas fa-envelope"></i> Contact</a>
-        <span style="color: #7a4bc2; font-weight: 600; margin: 0 0.5rem;">
-          <i class="fas fa-user-circle"></i> ${currentUser.fullname || 'User'}
-        </span>
-        <a onclick="handleLogout()" class="btn-logout-nav"><i class="fas fa-sign-out-alt"></i> Logout</a>
-      `;
-    } else {
-      nav.innerHTML = `
-        <a onclick="showPage('login')" class="btn-login-nav"><i class="fas fa-sign-in-alt"></i> Login</a>
-        <a onclick="showPage('register')" class="btn-register-nav"><i class="fas fa-user-plus"></i> Register</a>
-        <a onclick="showPage('contact')"><i class="fas fa-envelope"></i> Contact</a>
-      `;
-    }
-  }
-
-  // ----- Page navigation with protection -----
+  // ----- page navigation -----
   function showPage(pageId) {
-    // Check if trying to access dashboard without login
-    if (pageId === 'dashboard' && !isLoggedIn) {
-      alert('🔒 Please login to access the dashboard.');
-      showPage('login');
-      return;
-    }
-
-    // Hide all pages
-    const pages = ['page-dashboard', 'page-login', 'page-register', 'page-pending', 'page-login-success'];
+    // hide all pages
+    const pages = ['page-dashboard', 'page-login', 'page-pending', 'page-login-success'];
     pages.forEach(id => {
       const el = document.getElementById(id);
       if (el) {
@@ -923,12 +800,12 @@
       }
     });
 
-    // Show target
+    // show target
     const targetMap = {
       'dashboard': 'page-dashboard',
       'login': 'page-login',
-      'register': 'page-register',
-      'contact': 'page-dashboard',
+      'register': 'page-dashboard', // scroll to register
+      'contact': 'page-dashboard',  // scroll to contact
       'pending': 'page-pending',
       'login-success': 'page-login-success'
     };
@@ -942,24 +819,19 @@
       }
     }
 
-    // If showing dashboard, update user info
-    if (pageId === 'dashboard' && isLoggedIn && currentUser) {
-      document.getElementById('dashboardUserName').textContent = currentUser.fullname || 'User';
-      const accountInfo = document.getElementById('userAccountInfo');
-      accountInfo.innerHTML = `
-        <div><strong>Name:</strong> ${currentUser.fullname || '-'}</div>
-        <div><strong>Email:</strong> ${currentUser.email || '-'}</div>
-        <div><strong>Phone:</strong> ${currentUser.phone || '-'}</div>
-        <div><strong>Location:</strong> ${currentUser.location || '-'}</div>
-        <div><strong>Status:</strong> <span style="color: #4CAF50;"><i class="fas fa-check-circle"></i> Approved</span></div>
-      `;
+    // handle scrolling for register / contact
+    if (pageId === 'register') {
+      setTimeout(() => {
+        document.getElementById('registerPanel').scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    } else if (pageId === 'contact') {
+      setTimeout(() => {
+        document.getElementById('contactPage').scrollIntoView({ behavior: 'smooth' });
+      }, 100);
     }
-
-    // Scroll to top
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  // ----- Registration handler -----
+  // ----- registration handler -----
   function handleRegistration() {
     const fullname = document.getElementById('fullname').value.trim();
     const email = document.getElementById('email').value.trim();
@@ -977,24 +849,24 @@
       return;
     }
 
-    // Save user data
+    // save to "database" (localStorage)
     const userData = {
       fullname,
       email,
       phone,
       location,
       dob,
-      password, // In production, this would be hashed
+      password, // in real app, this would be hashed
       registeredAt: new Date().toISOString(),
       status: 'pending review'
     };
     localStorage.setItem('unicornRegistration', JSON.stringify(userData));
 
-    // Update pending page
+    // update pending page
     document.getElementById('pendingName').textContent = fullname;
     document.getElementById('pendingEmail').textContent = email;
 
-    // Show saved data
+    // show saved data
     const displayDiv = document.getElementById('savedDataDisplay');
     displayDiv.innerHTML = `
       <span><strong>Name</strong></span><span>${fullname}</span>
@@ -1009,7 +881,7 @@
     document.getElementById('registrationForm').reset();
   }
 
-  // ----- Login handler -----
+  // ----- login handler -----
   function handleLogin() {
     const email = document.getElementById('loginEmail').value.trim();
     const password = document.getElementById('loginPassword').value.trim();
@@ -1019,7 +891,7 @@
       return;
     }
 
-    // Check against stored registration
+    // check against stored registration
     const stored = localStorage.getItem('unicornRegistration');
     if (!stored) {
       alert('No account found. Please register first.');
@@ -1029,22 +901,8 @@
     try {
       const userData = JSON.parse(stored);
       if (userData.email === email && userData.password === password) {
-        // Login success - set auth state
-        isLoggedIn = true;
-        currentUser = {
-          fullname: userData.fullname,
-          email: userData.email,
-          phone: userData.phone,
-          location: userData.location,
-          dob: userData.dob
-        };
-        localStorage.setItem('unicornAuth', JSON.stringify({
-          isLoggedIn: true,
-          user: currentUser
-        }));
-
+        // login success
         document.getElementById('loginSuccessName').textContent = userData.fullname || 'User';
-        updateNavigation();
         showPage('login-success');
         document.getElementById('loginForm').reset();
       } else {
@@ -1055,19 +913,7 @@
     }
   }
 
-  // ----- Logout handler -----
-  function handleLogout() {
-    if (confirm('Are you sure you want to logout?')) {
-      isLoggedIn = false;
-      currentUser = null;
-      localStorage.removeItem('unicornAuth');
-      updateNavigation();
-      showPage('login');
-      alert('You have been logged out successfully.');
-    }
-  }
-
-  // ----- Newsletter subscription (demo) -----
+  // ----- newsletter subscription (demo) -----
   function handleNewsletter() {
     const emailInput = document.getElementById('newsletterEmail');
     const email = emailInput.value.trim();
@@ -1079,23 +925,13 @@
     emailInput.value = '';
   }
 
-  // ----- Auto-load saved data and check auth -----
+  // ----- auto-load saved data if exists -----
   window.addEventListener('DOMContentLoaded', function() {
-    // Check authentication status
-    const authStatus = checkAuthStatus();
-    
-    // If logged in, show dashboard
-    if (authStatus) {
-      showPage('dashboard');
-    } else {
-      showPage('login');
-    }
-
-    // Load registration data if exists
     const saved = localStorage.getItem('unicornRegistration');
     if (saved) {
       try {
         const data = JSON.parse(saved);
+        // update pending page if visible
         if (document.getElementById('page-pending').classList.contains('page-active')) {
           document.getElementById('pendingName').textContent = data.fullname || 'valued unicorn';
           document.getElementById('pendingEmail').textContent = data.email || 'your@email.com';
@@ -1113,13 +949,11 @@
     }
   });
 
-  // Expose functions globally
+  // expose functions globally
   window.showPage = showPage;
   window.handleRegistration = handleRegistration;
   window.handleLogin = handleLogin;
-  window.handleLogout = handleLogout;
   window.handleNewsletter = handleNewsletter;
-  window.checkAuthStatus = checkAuthStatus;
 </script>
 </body>
 </html>
