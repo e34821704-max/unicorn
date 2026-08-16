@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>🦄 Unicorn Reserve · Registration</title>
+  <title>🦄 Unicorn Reserve · Login</title>
   <!-- Font Awesome 6 (free) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
   <style>
@@ -76,6 +76,7 @@
       border-bottom: 3px solid transparent;
       transition: 0.2s;
       font-size: 1.05rem;
+      cursor: pointer;
     }
 
     .nav-links a:hover {
@@ -198,7 +199,7 @@
       color: #7a4bc2;
     }
 
-    /* registration panel – no wallet */
+    /* registration panel */
     .register-panel {
       background: rgba(255, 248, 255, 0.6);
       backdrop-filter: blur(4px);
@@ -281,6 +282,32 @@
       transform: scale(1.02);
       box-shadow: 0 10px 24px rgba(120, 60, 200, 0.4);
       background: linear-gradient(145deg, #c792f7, #7b4bc2);
+    }
+
+    /* login panel (similar style) */
+    .login-panel {
+      background: rgba(255, 248, 255, 0.6);
+      backdrop-filter: blur(4px);
+      border-radius: 2.5rem;
+      padding: 2rem 2rem 2.2rem;
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .login-panel h3 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #2f1d47;
+      margin-bottom: 1.4rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .login-panel h3 i {
+      color: #c084fc;
     }
 
     /* newsletter & contact */
@@ -402,7 +429,7 @@
       flex-wrap: wrap;
     }
 
-    /* hidden pages (registration success + pending review) */
+    /* hidden pages */
     .page-hidden {
       display: none;
     }
@@ -411,7 +438,7 @@
       display: block;
     }
 
-    /* pending / success card */
+    /* status card for pending / login success */
     .status-card {
       background: rgba(255, 248, 255, 0.7);
       backdrop-filter: blur(8px);
@@ -462,6 +489,24 @@
       transform: scale(1.02);
     }
 
+    .login-link {
+      text-align: center;
+      margin-top: 1.2rem;
+      font-size: 0.95rem;
+      color: #3d2a5c;
+    }
+
+    .login-link a {
+      color: #7a4bc2;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .login-link a:hover {
+      text-decoration: underline;
+    }
+
     /* responsive */
     @media (max-width: 880px) {
       .dashboard-grid {
@@ -496,13 +541,14 @@
       <i class="fas fa-unicorn"></i> UNICORN · RSV
     </div>
     <div class="nav-links">
-      <a href="#" onclick="showPage('dashboard')"><i class="fas fa-chart-pie"></i> Dashboard</a>
-      <a href="#" onclick="showPage('register')"><i class="fas fa-user-plus"></i> Register</a>
-      <a href="#" onclick="showPage('contact')"><i class="fas fa-envelope"></i> Contact</a>
+      <a onclick="showPage('dashboard')"><i class="fas fa-chart-pie"></i> Dashboard</a>
+      <a onclick="showPage('register')"><i class="fas fa-user-plus"></i> Register</a>
+      <a onclick="showPage('login')"><i class="fas fa-sign-in-alt"></i> Login</a>
+      <a onclick="showPage('contact')"><i class="fas fa-envelope"></i> Contact</a>
     </div>
   </div>
 
-  <!-- ========== DASHBOARD PAGE (default) ========== -->
+  <!-- ========== DASHBOARD PAGE ========== -->
   <div id="page-dashboard" class="page-active">
     <div class="dashboard-grid">
       <!-- left stats -->
@@ -564,11 +610,18 @@
             <label for="dob"><i class="fas fa-calendar-alt"></i> Date of Birth</label>
             <input type="date" id="dob" required />
           </div>
+          <div class="form-group">
+            <label for="regPassword"><i class="fas fa-lock"></i> Create password</label>
+            <input type="password" id="regPassword" placeholder="Min 6 characters" required minlength="6" />
+          </div>
           <button type="submit" class="btn-register"><i class="fas fa-star"></i> Register now</button>
         </form>
         <p style="margin-top: 1rem; font-size: 0.8rem; color: #59447a; text-align: center;">
           <i class="fas fa-lock" style="margin-right: 4px;"></i> Your data is encrypted & secure
         </p>
+        <div class="login-link">
+          Already have an account? <a onclick="showPage('login')">Log in here</a>
+        </div>
       </div>
     </div>
 
@@ -608,6 +661,30 @@
     </div>
   </div>
 
+  <!-- ========== LOGIN PAGE ========== -->
+  <div id="page-login" class="page-hidden">
+    <div class="login-panel">
+      <h3><i class="fas fa-sign-in-alt"></i> Login to your account</h3>
+      <form id="loginForm" onsubmit="event.preventDefault(); handleLogin();">
+        <div class="form-group">
+          <label for="loginEmail"><i class="fas fa-envelope"></i> Email address</label>
+          <input type="email" id="loginEmail" placeholder="hello@unicorn.com" required />
+        </div>
+        <div class="form-group">
+          <label for="loginPassword"><i class="fas fa-lock"></i> Password</label>
+          <input type="password" id="loginPassword" placeholder="Enter your password" required />
+        </div>
+        <button type="submit" class="btn-register"><i class="fas fa-arrow-right"></i> Login</button>
+      </form>
+      <div class="login-link" style="margin-top:1.2rem;">
+        Don't have an account? <a onclick="showPage('register')">Register here</a>
+      </div>
+      <div class="login-link" style="margin-top:0.5rem; font-size:0.85rem;">
+        <a onclick="alert('Password reset link sent to your email (demo).')">Forgot password?</a>
+      </div>
+    </div>
+  </div>
+
   <!-- ========== REGISTRATION SUCCESS / PENDING PAGE ========== -->
   <div id="page-pending" class="page-hidden">
     <div class="status-card">
@@ -635,6 +712,20 @@
     </div>
   </div>
 
+  <!-- ========== LOGIN SUCCESS PAGE ========== -->
+  <div id="page-login-success" class="page-hidden">
+    <div class="status-card">
+      <i class="fas fa-check-circle" style="color:#4CAF50;"></i>
+      <h2>✅ Welcome back, <span id="loginSuccessName">User</span>!</h2>
+      <p>You have successfully logged in to your Unicorn RSV account.</p>
+      <p style="margin-top: 1rem; background: #ece3ff; padding: 1rem; border-radius: 60px;">
+        <i class="fas fa-unicorn" style="color:#7a4bc2;"></i> 
+        You now have access to your dashboard and exclusive features.
+      </p>
+      <button class="btn-back" onclick="showPage('dashboard')"><i class="fas fa-arrow-left"></i> Go to Dashboard</button>
+    </div>
+  </div>
+
   <!-- ========== FOOTER ========== -->
   <div class="footer-note">
     <span><i class="fas fa-check-circle" style="color:#7b4fc0;"></i> Contract verified</span>
@@ -648,60 +739,82 @@
   // ----- page navigation -----
   function showPage(pageId) {
     // hide all pages
-    document.getElementById('page-dashboard').classList.remove('page-active');
-    document.getElementById('page-dashboard').classList.add('page-hidden');
-    document.getElementById('page-pending').classList.remove('page-active');
-    document.getElementById('page-pending').classList.add('page-hidden');
+    const pages = ['page-dashboard', 'page-login', 'page-pending', 'page-login-success'];
+    pages.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) {
+        el.classList.remove('page-active');
+        el.classList.add('page-hidden');
+      }
+    });
 
-    if (pageId === 'dashboard') {
-      document.getElementById('page-dashboard').classList.remove('page-hidden');
-      document.getElementById('page-dashboard').classList.add('page-active');
-    } else if (pageId === 'register') {
-      // scroll to registration form on dashboard
-      document.getElementById('page-dashboard').classList.remove('page-hidden');
-      document.getElementById('page-dashboard').classList.add('page-active');
-      document.getElementById('registerPanel').scrollIntoView({ behavior: 'smooth' });
+    // show target
+    const targetMap = {
+      'dashboard': 'page-dashboard',
+      'login': 'page-login',
+      'register': 'page-dashboard', // scroll to register
+      'contact': 'page-dashboard',  // scroll to contact
+      'pending': 'page-pending',
+      'login-success': 'page-login-success'
+    };
+
+    const targetId = targetMap[pageId];
+    if (targetId) {
+      const el = document.getElementById(targetId);
+      if (el) {
+        el.classList.remove('page-hidden');
+        el.classList.add('page-active');
+      }
+    }
+
+    // handle scrolling for register / contact
+    if (pageId === 'register') {
+      setTimeout(() => {
+        document.getElementById('registerPanel').scrollIntoView({ behavior: 'smooth' });
+      }, 100);
     } else if (pageId === 'contact') {
-      document.getElementById('page-dashboard').classList.remove('page-hidden');
-      document.getElementById('page-dashboard').classList.add('page-active');
-      document.getElementById('contactPage').scrollIntoView({ behavior: 'smooth' });
-    } else if (pageId === 'pending') {
-      document.getElementById('page-pending').classList.remove('page-hidden');
-      document.getElementById('page-pending').classList.add('page-active');
+      setTimeout(() => {
+        document.getElementById('contactPage').scrollIntoView({ behavior: 'smooth' });
+      }, 100);
     }
   }
 
   // ----- registration handler -----
   function handleRegistration() {
-    // gather values
     const fullname = document.getElementById('fullname').value.trim();
     const email = document.getElementById('email').value.trim();
     const phone = document.getElementById('phone').value.trim();
     const location = document.getElementById('location').value.trim();
     const dob = document.getElementById('dob').value;
+    const password = document.getElementById('regPassword').value;
 
-    if (!fullname || !email || !phone || !location || !dob) {
+    if (!fullname || !email || !phone || !location || !dob || !password) {
       alert('Please fill in all fields.');
       return;
     }
+    if (password.length < 6) {
+      alert('Password must be at least 6 characters.');
+      return;
+    }
 
-    // save to "database" (localStorage for demo)
+    // save to "database" (localStorage)
     const userData = {
       fullname,
       email,
       phone,
       location,
       dob,
+      password, // in real app, this would be hashed
       registeredAt: new Date().toISOString(),
       status: 'pending review'
     };
     localStorage.setItem('unicornRegistration', JSON.stringify(userData));
 
-    // update pending page with name + email
+    // update pending page
     document.getElementById('pendingName').textContent = fullname;
     document.getElementById('pendingEmail').textContent = email;
 
-    // show saved data in the info box
+    // show saved data
     const displayDiv = document.getElementById('savedDataDisplay');
     displayDiv.innerHTML = `
       <span><strong>Name</strong></span><span>${fullname}</span>
@@ -712,11 +825,40 @@
       <span><strong>Status</strong></span><span><i class="fas fa-hourglass-half" style="color:#b57ceb;"></i> pending review</span>
     `;
 
-    // navigate to pending page
     showPage('pending');
-
-    // optionally clear form
     document.getElementById('registrationForm').reset();
+  }
+
+  // ----- login handler -----
+  function handleLogin() {
+    const email = document.getElementById('loginEmail').value.trim();
+    const password = document.getElementById('loginPassword').value.trim();
+
+    if (!email || !password) {
+      alert('Please enter both email and password.');
+      return;
+    }
+
+    // check against stored registration
+    const stored = localStorage.getItem('unicornRegistration');
+    if (!stored) {
+      alert('No account found. Please register first.');
+      return;
+    }
+
+    try {
+      const userData = JSON.parse(stored);
+      if (userData.email === email && userData.password === password) {
+        // login success
+        document.getElementById('loginSuccessName').textContent = userData.fullname || 'User';
+        showPage('login-success');
+        document.getElementById('loginForm').reset();
+      } else {
+        alert('Invalid email or password. Please try again.');
+      }
+    } catch (e) {
+      alert('Error during login. Please try again.');
+    }
   }
 
   // ----- newsletter subscription (demo) -----
@@ -731,15 +873,13 @@
     emailInput.value = '';
   }
 
-  // ----- auto-load saved data if exists (dashboard) -----
+  // ----- auto-load saved data if exists -----
   window.addEventListener('DOMContentLoaded', function() {
     const saved = localStorage.getItem('unicornRegistration');
     if (saved) {
       try {
         const data = JSON.parse(saved);
-        // prefill form if we want (optional)
-        // but we only show on pending page if user navigates there
-        // we also update the pending info if it's shown
+        // update pending page if visible
         if (document.getElementById('page-pending').classList.contains('page-active')) {
           document.getElementById('pendingName').textContent = data.fullname || 'valued unicorn';
           document.getElementById('pendingEmail').textContent = data.email || 'your@email.com';
@@ -757,9 +897,10 @@
     }
   });
 
-  // expose functions globally for onclick
+  // expose functions globally
   window.showPage = showPage;
   window.handleRegistration = handleRegistration;
+  window.handleLogin = handleLogin;
   window.handleNewsletter = handleNewsletter;
 </script>
 </body>
